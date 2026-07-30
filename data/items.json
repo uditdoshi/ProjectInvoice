@@ -1,0 +1,980 @@
+[
+  {
+    "code": "00000A",
+    "description": "Item A",
+    "hsn": "10000001",
+    "gst_rate": 5.0
+  },
+  {
+    "code": "00000B",
+    "description": "Item B",
+    "hsn": "20000002",
+    "gst_rate": 12.0
+  },
+  {
+    "code": "00000C",
+    "description": "Item C",
+    "hsn": "30000003",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "00000D",
+    "description": "Item D",
+    "hsn": "40000004",
+    "gst_rate": 28.0
+  },
+  {
+    "code": "00000E",
+    "description": "Item E",
+    "hsn": "50000005",
+    "gst_rate": 5.0
+  },
+  {
+    "code": "201LV",
+    "description": "HIPS",
+    "hsn": "39031990",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "EX-Poly K-300",
+    "description": "POM",
+    "hsn": "39071000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "ABS 920",
+    "description": "ABS",
+    "hsn": "39033000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "HDPE-B56003",
+    "description": "HDPE  B56003",
+    "hsn": "39012000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "PP 110MA",
+    "description": "P P 110",
+    "hsn": "39021000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "P.P",
+    "description": "PLASTIC GRANUALS P",
+    "hsn": "39021000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "GPPS",
+    "description": "GPPS",
+    "hsn": "39031990",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "pvc nat 70''",
+    "description": "Plastic Pvc Granuals black dd",
+    "hsn": "3904",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "PlasticGranu",
+    "description": "Plastic Granuals",
+    "hsn": "39033000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "HDPE",
+    "description": "PLASTIC GRANUALS - HDPE",
+    "hsn": "39012000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "PVC Grey",
+    "description": "Plastic PVC Granuals blue",
+    "hsn": "3904",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "PVC Black40",
+    "description": "Plastic PVC Granuals bl40",
+    "hsn": "3904",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "SGF 30% Natural",
+    "description": "SGF 30% Natural",
+    "hsn": "39081090",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "2300 SAN",
+    "description": "2300 CLEAR SAN",
+    "hsn": "39032000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "Laxan 143",
+    "description": "Laxan Resin 143R-805093",
+    "hsn": "39074000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "B120ppcp",
+    "description": "PP B 120 MA",
+    "hsn": "39023000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "NY\"66\"",
+    "description": "NYLON 66 GF 30% NATURAL",
+    "hsn": "39081090",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "NY BLK",
+    "description": "NYLON BLACK",
+    "hsn": "39081090",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "NY NAT 6",
+    "description": "SXXIC HS NATURAL",
+    "hsn": "3908",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "PC",
+    "description": "POLY CARBONATE",
+    "hsn": "39074000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "HD",
+    "description": "HDPE",
+    "hsn": "39012000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "Pl.Powd.",
+    "description": "PLASTIC GRANUALS GF",
+    "hsn": "39081090",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "C-59",
+    "description": "Plastic PVC Granuals Cl59",
+    "hsn": "3904",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "SP-6",
+    "description": "TPE Compound SP-6 Nat.",
+    "hsn": "40059990",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "Jet Blk",
+    "description": "Abs 700 Std Red",
+    "hsn": "39033000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "IFB",
+    "description": "ABS BLACK",
+    "hsn": "39033000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "PP110",
+    "description": "PP H110MA",
+    "hsn": "39021000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "HD180",
+    "description": "HDPE  50MA180",
+    "hsn": "39012000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "PVC Yellow v",
+    "description": "PLASTIC PVC GRANUALS Y V",
+    "hsn": "3904",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "PVC Milky",
+    "description": "Plastic PVC Granuals mi",
+    "hsn": "3904",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "Repro.Ny.Blk",
+    "description": "Reprocess Nylon Black",
+    "hsn": "39",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "Ny.Blk DSR",
+    "description": "NYLON BLACK",
+    "hsn": "39081090",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "PVC Blk3",
+    "description": "Plastic PVC Granuals bl3",
+    "hsn": "3904",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "PVC Red",
+    "description": "Plastic PVC Granuals Red",
+    "hsn": "3904",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "Polystyrene",
+    "description": "Polystyrene Plastic Powder",
+    "hsn": "3903",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "Guj.milky",
+    "description": "NYLON R",
+    "hsn": "39081011",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "PPCP",
+    "description": "PPCP",
+    "hsn": "39023000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "Ldpe",
+    "description": "LDPE 1922",
+    "hsn": "39011020",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "gl.blk.V",
+    "description": "Sgf 30 M (I)Black",
+    "hsn": "39081090",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "MA400",
+    "description": "LDPE 16MA400",
+    "hsn": "39011020",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "PCBlack",
+    "description": "PC PLASTIC POWDER",
+    "hsn": "3907",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "P/S TR.Blue",
+    "description": "P P POWDER",
+    "hsn": "39021000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "polyprop",
+    "description": "POLYPROPLENE",
+    "hsn": "39021000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "Polymide",
+    "description": "NYLON F",
+    "hsn": "39081011",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "LD040",
+    "description": "LDPE J 24FS040",
+    "hsn": "39011090",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "K300",
+    "description": "POLYACETAL K300",
+    "hsn": "39071000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "PVC Black",
+    "description": "PLASTIC PVC GRANUALS 83",
+    "hsn": "3904",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "PU92",
+    "description": "TPU WHT 1190",
+    "hsn": "39095000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "STD.Red",
+    "description": "ABS PLASTIC POWDER",
+    "hsn": "39033000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "LLDPE",
+    "description": "LLDPE M 26500",
+    "hsn": "39011010",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "ABS B BLK.",
+    "description": "ABS 300B BLACK",
+    "hsn": "39033000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "Bhatia",
+    "description": "Plastic Granuals Reprocessed",
+    "hsn": "39021000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "ny.gl.red",
+    "description": "Nylon Plastic Powder",
+    "hsn": "3908",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "Random blow.",
+    "description": "PPCP SR 20 NC",
+    "hsn": "39023000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "pl.granu",
+    "description": "Plastic Granuals PP",
+    "hsn": "39021000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "TR.BLUE",
+    "description": "PLASTIC GRANUALS PS",
+    "hsn": "39031990",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "TPE BLK.",
+    "description": "TPE Compound SP-50 Black",
+    "hsn": "40059990",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "P/S NAT.",
+    "description": "POLYSTYRENE GEN. PURPOSE SC203TR",
+    "hsn": "39031990",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "Nylon",
+    "description": "NYLON OFF GRADE",
+    "hsn": "39089020",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "LLDP",
+    "description": "LLDP",
+    "hsn": "3901",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "TPE BLK.",
+    "description": "TPE Compound JK 6500 BLACK",
+    "hsn": "40059990",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "LD plastic",
+    "description": "Plastic powder",
+    "hsn": "39012000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "PP random",
+    "description": "PP SRM100 NC",
+    "hsn": "39023000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "RPP",
+    "description": "P.P.RCM",
+    "hsn": "39023000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "P/S",
+    "description": "SC-203EL G P POLYSTERENE",
+    "hsn": "39031990",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "process pp",
+    "description": "PP HP 500N",
+    "hsn": "39021000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "guj nat.",
+    "description": "M40RC (RED)",
+    "hsn": "39081010",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "reprocess",
+    "description": "PLASTIC GRANUALS D",
+    "hsn": "39152000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "reprocess",
+    "description": "PLASTIC GRANUALS L S",
+    "hsn": "39011090",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "ABS Colour",
+    "description": "STAREX ABS RESIN SD-0150W",
+    "hsn": "39033000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "Eva",
+    "description": "EVA PLASTIC POWDER",
+    "hsn": "3901",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "66 w Blk",
+    "description": "Rgf 33 W Black",
+    "hsn": "39081041",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "Ifb White",
+    "description": "Abs 700 Ifb White",
+    "hsn": "39033000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "HD",
+    "description": "HDPE (OPALENE) HD-M5220",
+    "hsn": "39012000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "Ny.Guj.Nat",
+    "description": "M28RC(NAT)",
+    "hsn": "39081010",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "san",
+    "description": "SAN PLASTIC POWDER",
+    "hsn": "3903",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "I.O White",
+    "description": "ABS 700 I.O WHITE",
+    "hsn": "39033000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "P/S",
+    "description": "GP POLYSTYRENE",
+    "hsn": "3903",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "PVC MILKY",
+    "description": "PLASTIC PVC GRANUALS BL V",
+    "hsn": "3904",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "Nylon milky",
+    "description": "M28RC Milky White",
+    "hsn": "3908",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "K700",
+    "description": "K-700",
+    "hsn": "3907",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "PVC Blue",
+    "description": "Plastic PVC Granuals Blue",
+    "hsn": "3904",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "Del.Nat.",
+    "description": "Delrin Plastic Powder",
+    "hsn": "3907",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "Ny.Blk15%",
+    "description": "Sgf 15 Black",
+    "hsn": "39081090",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "PU85",
+    "description": "Thermo Plastic Polyurethene TPU",
+    "hsn": "39095000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "Acrylic",
+    "description": "Acrylic Plastic Powder",
+    "hsn": "3906",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "SAN",
+    "description": "SAN 310 CTR",
+    "hsn": "39032000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "M90",
+    "description": "CELCON M90",
+    "hsn": "39071000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "ABS",
+    "description": "ABS 50N",
+    "hsn": "3903",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "C-62",
+    "description": "Plastic PVC Granuals Cl62",
+    "hsn": "3904",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "Ny 66 BLk",
+    "description": "RXXICSS Black",
+    "hsn": "39081090",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "3530",
+    "description": "PPCP MI 3530",
+    "hsn": "39023000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "HD BLK",
+    "description": "Plastic Granuals HDPE Black",
+    "hsn": "390190",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "PU3690",
+    "description": "TPUThermoPlastic PolyuretheneINOV-T-3690",
+    "hsn": "39095000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "PP gl.Blk",
+    "description": "RPG 20 BK-J",
+    "hsn": "39021000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "HD Blk.Shk",
+    "description": "Plastic Granules HD Black",
+    "hsn": "390190",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "PU 98",
+    "description": "LARIPUR 5520",
+    "hsn": "39095000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "Roma loose",
+    "description": "PLASTIC GRANUALS 03(ABS ROMA WHITE)",
+    "hsn": "39033000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "Delrin",
+    "description": "PLASTIC GRANUALS DELRIN",
+    "hsn": "3907",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "TPE Clr 35''",
+    "description": "TPE GP 35 A TR",
+    "hsn": "40059990",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "BSF NY\"66\"",
+    "description": "ULTRAMID A 205F NATURAL",
+    "hsn": "39081041",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "TPU 85",
+    "description": "TPU MIRATHANE POLYURETHENE E- 385-85A",
+    "hsn": "39095000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "TPE SP06",
+    "description": "TPE GP - 6N - (PPB)",
+    "hsn": "40059990",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "EVA MED",
+    "description": "EVA 2518 CO",
+    "hsn": "39013000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "NY BLK NXT",
+    "description": "NYLON BLK",
+    "hsn": "39089090",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "cl83  90''",
+    "description": "PLASTIC PVC GRANUALS cl83",
+    "hsn": "3904",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "Nxt Blk-02",
+    "description": "NX - 02 BK",
+    "hsn": "39081090",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "TPE GP55BK",
+    "description": "TPE GP-55(B) BLACK(V)",
+    "hsn": "40059990",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "gl.blk next",
+    "description": "NG 30 02 JBK 0144",
+    "hsn": "39089090",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "TPE N 92''",
+    "description": "TPE GP-92(N) PPB - 92A",
+    "hsn": "40059990",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "nxt Nat.gl.",
+    "description": "NG30-01 NC 0915",
+    "hsn": "39089090",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "ny'66'plain",
+    "description": "PXR - 01 NC",
+    "hsn": "39081090",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "Acry Nat",
+    "description": "PMMA IG 840",
+    "hsn": "39061090",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "PU 90''",
+    "description": "TPU MIRATHANE POLYURETHENE E-390-92A",
+    "hsn": "39095000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "PBT GL.30%",
+    "description": "QP - PBT - A125 - NAT01",
+    "hsn": "39079990",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "PU90''",
+    "description": "TPU-INOV-T-3690",
+    "hsn": "39095000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "PP GF 15%",
+    "description": "SEB 150 PP Glasfield Natural 15%",
+    "hsn": "39021000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "PVC Yellow v",
+    "description": "PLASTIC PVC GRANUALS Yellow v",
+    "hsn": "3904",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "pp gl.nat15%",
+    "description": "SEB 150  PP MOULDING POWDER",
+    "hsn": "39021000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "PU 85''",
+    "description": "TPU WANTHEN WHT-3385-85A",
+    "hsn": "39095000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "P/S 200",
+    "description": "GPPS SC 200",
+    "hsn": "39031990",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "PMMA",
+    "description": "PMMA IG 840",
+    "hsn": "39061090",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "pc blk next",
+    "description": "CX 02 A BK",
+    "hsn": "39074000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "TPE BLK65''",
+    "description": "TPE GP - 65(B) (V) BLACK",
+    "hsn": "40059990",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "Tpe blk p 65''",
+    "description": "TPE GP - 65(B) BLACK (NV)",
+    "hsn": "40059990",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "abs blk nxt",
+    "description": "SX - 02 AV BK",
+    "hsn": "39033000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "ny66blk",
+    "description": "Technyl 4 Earth A2E216BK H(Economid FL 66 BK)",
+    "hsn": "39089090",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "klon gl.blk",
+    "description": "GF3HF (BLACK)",
+    "hsn": "39081010",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "klon66nat",
+    "description": "NYLON 66 NATURAL",
+    "hsn": "39081090",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "pp srx 100",
+    "description": "PP SRX 100",
+    "hsn": "39023000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "TPE 50bk nv",
+    "description": "TPE GP - 250 BLACK(NV)",
+    "hsn": "40059990",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "PBT GF",
+    "description": "PBT GF NATURAL",
+    "hsn": "39079150",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "PU1185",
+    "description": "TPU WHT - 1185EC 85A",
+    "hsn": "39095000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "HIP Nat",
+    "description": "HIP SH 03 (GST)",
+    "hsn": "39031990",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "LLDPE",
+    "description": "LLDPE",
+    "hsn": "39014010",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "ny blue",
+    "description": "Nylon GF Blue",
+    "hsn": "39081090",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "PU6520",
+    "description": "LARIPUR 6520",
+    "hsn": "39095000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "PU 75\"",
+    "description": "TPU WANTHEN-WHT-1570 IC-70A",
+    "hsn": "39095000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "EVA",
+    "description": "EVA",
+    "hsn": "39013000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "M28RC Blu",
+    "description": "M28RC (BLUE)",
+    "hsn": "39081010",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "klon gl.blk",
+    "description": "NYLON GF BLK",
+    "hsn": "39081090",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "gl blk pro",
+    "description": "PLASTIC GRANUALS GF",
+    "hsn": "39081090",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "ny 66 blk",
+    "description": "NYLON 66 BLACK",
+    "hsn": "39081090",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "ny gl 66 blk",
+    "description": "NYLON 66 RGF 33% BLACK",
+    "hsn": "39081090",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "TPE 30''",
+    "description": "TPE GP-8030N(PPB)",
+    "hsn": "40059990",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "guj gl blk 15%",
+    "description": "NYLON GF 30H F BLK",
+    "hsn": "39081011",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "pvc blk h",
+    "description": "PLASTIC PVC GRANUALS Blv h",
+    "hsn": "3904",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "grp gl blk i",
+    "description": "NYLON 6 30% GFI",
+    "hsn": "39089090",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "guj nat S",
+    "description": "NYLON M28RC NAT S",
+    "hsn": "39081011",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "guj66 nat",
+    "description": "NYLON 66",
+    "hsn": "39081049",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "pvc blk 60''",
+    "description": "PLASTIC PVC GRANUALS Bl38",
+    "hsn": "3904",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "ny nat'66",
+    "description": "PA 66 NAT",
+    "hsn": "39081011",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "natural gf3h",
+    "description": "NYLON GF3H",
+    "hsn": "39081011",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "pbt blk 30%",
+    "description": "PBT GF 30 % BK",
+    "hsn": "39079150",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "guj'66'gls nat",
+    "description": "PA 66 GF30H (N)",
+    "hsn": "39081011",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "ppcp mittal",
+    "description": "POLYSURE PP CM12RR",
+    "hsn": "39023000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "wanthen3390",
+    "description": "TPU WANTHEN WHT - 3390 - U1",
+    "hsn": "39095000",
+    "gst_rate": 18.0
+  },
+  {
+    "code": "MMS1",
+    "description": "MMS1",
+    "hsn": "39081011",
+    "gst_rate": 18.0
+  }
+]
