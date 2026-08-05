@@ -1,4 +1,4 @@
-const CACHE = 'easyinvoice-v7-final-summary-layout';
+const CACHE = 'easyinvoice-final-phone-fix-1';
 const ASSETS = [
   './', './index.html', './assets/style.css', './assets/app.js',
   './assets/database.js', './config.js', './data/data.js',
