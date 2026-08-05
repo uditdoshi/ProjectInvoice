@@ -1,0 +1,13 @@
+{
+  "name": "EasyInvoice - Shree Polymers",
+  "short_name": "EasyInvoice",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f5f7fb",
+  "theme_color": "#2457d6",
+  "description": "Create and manage Shree Polymers invoices from a phone or computer.",
+  "icons": [
+    {"src":"icons/icon-192.png","sizes":"192x192","type":"image/png"},
+    {"src":"icons/icon-512.png","sizes":"512x512","type":"image/png"}
+  ]
+}
