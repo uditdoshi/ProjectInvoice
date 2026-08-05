@@ -1,4 +1,4 @@
-const CACHE = 'easyinvoice-final-phone-fix-2';
+const CACHE = 'easyinvoice-final-phone-fix-3';
 const ASSETS = [
   './', './index.html', './assets/style.css', './assets/app.js',
   './assets/database.js', './config.js', './data/data.js',
