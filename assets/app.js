@@ -31,7 +31,7 @@ function customerHtml(c){if(!c)return 'Select a customer to fill the details.';r
 function bindCustomer(){selectedCustomer=customerByName($('customerSearch').value);$('customerDetails').innerHTML=customerHtml(selectedCustomer);$('customerDetails').classList.toggle('empty',!selectedCustomer);calc()}
 function bindShipping(){selectedShipping=customerByName($('shippingSearch').value);$('shippingDetails').innerHTML=customerHtml(selectedShipping);$('shippingDetails').classList.toggle('empty',!selectedShipping)}
 function addLine(seed={}){lines.push({id:crypto.randomUUID?crypto.randomUUID():String(Date.now()+Math.random()),itemName:seed.itemName||'',description:seed.description||'',hsn:seed.hsn||'',qty:seed.qty??'',rate:seed.rate??'',gst:seed.gst??18});renderLines()}
-function renderLines(){ $('lines').innerHTML=lines.map((l,idx)=>`<div class="lineItem" data-id="${l.id}"><label class="desc">Item<input class="item" list="itemOptions${idx}" value="${esc(l.itemName)}" placeholder="Search item"><datalist id="itemOptions${idx}">${I.map(x=>`<option value="${esc(x.description)} — ${esc(x.code)}"></option>`).join('')}</datalist></label><label>Qty<input class="qty" type="number" min="0" step="0.01" value="${l.qty ?? ''}"></label><label>Rate<input class="rate" type="number" min="0" step="0.01" value="${l.rate ?? ''}" placeholder="Enter rate"></label><label>GST %<input class="gst" type="number" min="0" step="0.01" value="${l.gst}"></label><div class="amount">${money(l.qty*l.rate)}</div><button class="remove" title="Remove">×</button></div>`).join('');
+function renderLines(){ $('lines').innerHTML=lines.map((l,idx)=>`<div class="lineItem" data-id="${l.id}"><label class="desc">Item<input class="item" list="itemOptions${idx}" value="${esc(l.itemName)}" placeholder="Search item"><datalist id="itemOptions${idx}">${I.map(x=>`<option value="${esc(x.description)} — ${esc(x.code)}"></option>`).join('')}</datalist></label><label>Qty<input class="qty" type="number" min="0" step="0.01" value="${l.qty}"></label><label>Rate<input class="rate" type="number" min="0" step="0.01" value="${l.rate}"></label><label>GST %<input class="gst" type="number" min="0" step="0.01" value="${l.gst}"></label><div class="amount">${money(l.qty*l.rate)}</div><button class="remove" title="Remove">×</button></div>`).join('');
  document.querySelectorAll('.lineItem').forEach(el=>{let l=lines.find(x=>x.id===el.dataset.id);el.querySelector('.item').onchange=e=>{let v=e.target.value, it=I.find(x=>(x.description+' — '+x.code)===v)||I.find(x=>x.description===v);if(it){l.materialId=it.id;l.itemName=v;l.description=it.description;l.hsn=it.hsn;l.gst=it.gst_rate;l.rate=Number(it.default_rate||l.rate||0)}else{l.itemName=v;l.description=v}renderLines()};['qty','rate','gst'].forEach(k=>el.querySelector('.'+k).oninput=e=>{l[k]=Number(e.target.value||0);el.querySelector('.amount').textContent=money(l.qty*l.rate);calc()});el.querySelector('.remove').onclick=()=>{lines=lines.filter(x=>x.id!==l.id);if(!lines.length)addLine();else renderLines();calc()}});calc() }
 function calc(){
   let itemSubtotal=0;
@@ -133,13 +133,40 @@ function renderInvoice(d){
     <div class="amount-words"><b>Amount in words :</b> <span class="amount-words-value">${amountWords(t.total).toUpperCase()}</span></div>
     <table class="inv-table terms-signature"><tr><td style="width:62%"><b>Terms &amp; Conditions:</b><ol>${terms.map(x=>`<li>${esc(x)}</li>`).join('')}</ol><b>Declaration:</b><br>We declare that this invoice shows the actual price of the goods described and that all particulars are true and correct.</td><td class="signature"><div class="signature-wrap"><div class="signature-eoe">E. &amp; O. E</div><div class="signature-top">For <b>${COMPANY.name}</b></div><div class="signature-bottom">Proprietor / Manager</div></div></td></tr></table>`;
 } 
-async function preview(){try{let d=data(),e=validate(d);if(e){alert(e);return}renderInvoice(d);$('previewModal').hidden=false;document.body.style.overflow='hidden'}catch(err){alert('Could not preview invoice: '+err.message)}}
+async function updatePreviewScale(){
+  const viewport=$('previewViewport'),stage=$('previewStage'),paper=$('invoicePaper');
+  if(!viewport||!stage||!paper||$('previewModal').hidden)return;
+  if(window.matchMedia('(min-width: 761px)').matches){
+    paper.style.transform='none';
+    stage.style.width='';
+    stage.style.height='';
+    return;
+  }
+  const available=Math.max(280,viewport.clientWidth-20);
+  const paperWidth=paper.offsetWidth||794;
+  const paperHeight=paper.offsetHeight||1123;
+  const scale=Math.min(1,available/paperWidth);
+  paper.style.transform=`scale(${scale})`;
+  paper.style.transformOrigin='top left';
+  stage.style.width=`${paperWidth*scale}px`;
+  stage.style.height=`${paperHeight*scale}px`;
+}
+function preview(){try{let d=data(),e=validate(d);if(e){alert(e);return}renderInvoice(d);$('previewModal').hidden=false;document.body.style.overflow='hidden';requestAnimationFrame(()=>requestAnimationFrame(updatePreviewScale))}catch(err){alert('Could not preview invoice: '+err.message)}}
 function reset(){editingId=null;selectedCustomer=selectedShipping=null;$('invoiceNo').value='';$('invoiceDate').value=isoToday();updateInvoicePrefix();$('paymentTerms').value='CDC';due();['customerSearch','shippingSearch','transporter','vehicleNo','broker','lrNo','lrDate','notes'].forEach(x=>$(x).value='');$('otherCharges').value='';$('sameShipping').checked=true;$('shippingBox').hidden=true;$('customerDetails').innerHTML='Select a customer to fill the billing details.';$('shippingDetails').innerHTML='Select a shipping address.';lines=[];addLine();calc()}
 function showHistory(){ $('editorView').hidden=true;$('historyView').hidden=false;renderHistory() }
 function renderHistory(){let q=$('historySearch').value.toLowerCase(),arr=invoices().filter(x=>(x.invoiceNo+' '+(x.customer?.name||'')).toLowerCase().includes(q));$('historyList').innerHTML=arr.length?arr.map(x=>`<div class="row"><div><b>${esc(x.invoiceNo)}</b><div class="muted">${esc(x.invoiceDate)}</div></div><div>${esc(x.customer?.name||'')}</div><div><b>${money(x.totals?.total)}</b></div><div><button class="secondary open" data-id="${x.id}">Open</button></div></div>`).join(''):'<div class="info empty">No saved invoices found.</div>';document.querySelectorAll('.open').forEach(b=>b.onclick=()=>loadInvoice(b.dataset.id))}
 function loadInvoice(id){let d=invoices().find(x=>String(x.id)===String(id));if(!d)return;editingId=d.id;$('invoiceDate').value=d.invoiceDate;$('invoiceNo').value=invoiceSuffix(d.invoiceNo,d.invoiceDate);updateInvoicePrefix();$('dueDate').value=d.dueDate;$('paymentTerms').value=d.paymentTerms;$('customerSearch').value=d.customer?.name||'';bindCustomer();let same=(d.shipping?.name||'')===(d.customer?.name||'');$('sameShipping').checked=same;$('shippingBox').hidden=same;$('shippingSearch').value=same?'':d.shipping?.name||'';bindShipping();lines=d.lines.map(x=>({...x,id:crypto.randomUUID?crypto.randomUUID():String(Math.random())}));renderLines();['transporter','vehicleNo','broker','lrNo','lrDate','notes'].forEach(k=>$(k).value=d[k]||'');$('otherCharges').value=d.otherCharges||0;$('historyView').hidden=true;$('editorView').hidden=false;calc();scrollTo(0,0)}
-$('customerSearch').onchange=bindCustomer;$('shippingSearch').onchange=bindShipping;$('sameShipping').onchange=e=>$('shippingBox').hidden=e.target.checked;$('paymentTerms').onchange=due;$('invoiceDate').onchange=()=>{due();updateInvoicePrefix();};$('otherCharges').oninput=calc;$('addLine').onclick=()=>addLine();$('previewBtn').onclick=preview;$('saveBtn').onclick=()=>save();$('saveFromPreview').onclick=()=>save();$('printBtn').onclick=()=>window.print();$('closePreview').onclick=()=>{$('previewModal').hidden=true;document.body.style.overflow=''};$('clearBtn').onclick=()=>{if(confirm('Clear the current invoice?'))reset()};$('historyBtn').onclick=()=>showView('historyView');$('newBtn').onclick=()=>{$('historyView').hidden=true;$('editorView').hidden=false;reset()};$('historySearch').oninput=renderHistory;
+$('customerSearch').onchange=bindCustomer;$('shippingSearch').onchange=bindShipping;$('sameShipping').onchange=e=>$('shippingBox').hidden=e.target.checked;$('paymentTerms').onchange=due;$('invoiceDate').onchange=()=>{due();updateInvoicePrefix();};$('otherCharges').oninput=calc;$('addLine').onclick=()=>addLine();$('previewBtn').onclick=preview;$('saveBtn').onclick=()=>save();$('saveFromPreview').onclick=()=>save();$('printBtn').onclick=()=>window.print();$('closePreview').onclick=()=>{$('previewModal').hidden=true;document.body.style.overflow='';const p=$('invoicePaper'),s=$('previewStage');if(p)p.style.transform='none';if(s){s.style.width='';s.style.height=''}};$('clearBtn').onclick=()=>{if(confirm('Clear the current invoice?'))reset()};$('historyBtn').onclick=()=>showView('historyView');$('newBtn').onclick=()=>{$('historyView').hidden=true;$('editorView').hidden=false;reset()};$('historySearch').oninput=renderHistory;
 
+
+
+window.addEventListener('resize',()=>requestAnimationFrame(updatePreviewScale));
+window.addEventListener('beforeprint',()=>{
+  const paper=$('invoicePaper'),stage=$('previewStage');
+  if(paper)paper.style.transform='none';
+  if(stage){stage.style.width='';stage.style.height='';}
+});
+window.addEventListener('afterprint',()=>requestAnimationFrame(updatePreviewScale));
 
 // ----- Master data management -----
 let editingCustomerId=null, editingItemId=null;
