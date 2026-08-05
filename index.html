@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <title>EasyInvoice</title>
-  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="assets/style.css?v=mobile-preview-final-1">
 </head>
 <body>
 <div id="loginGate" class="login-gate" hidden>
@@ -121,13 +121,13 @@
 
 <div id="previewModal" class="modal" hidden>
   <div class="modalbar"><button id="closePreview" class="ghost">Back</button><div><button id="saveFromPreview" class="secondary">Save</button><button id="printBtn" class="primary">Print / Save PDF</button></div></div>
-  <div id="invoicePaper" class="paper"></div>
+  <div id="previewViewport" class="preview-viewport"><div id="previewStage" class="preview-stage"><div id="invoicePaper" class="paper"></div></div></div>
 </div>
 </div><!-- /appShell -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="config.js"></script>
 <script src="assets/database.js"></script>
 <script src="data/data.js"></script>
-<script src="assets/app.js"></script>
+<script src="assets/app.js?v=mobile-preview-final-1"></script>
 </body>
 </html>
