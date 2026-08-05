@@ -832,3 +832,8 @@
     print-color-adjust: exact !important;
   }
 }
+@media print {
+  .tax-title {
+    border: 4px solid red !important;
+  }
+}
