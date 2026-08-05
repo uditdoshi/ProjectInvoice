@@ -766,12 +766,21 @@
     background:#fff !important;
   }
 
-  body > *:not(#previewModal){
-    display:none !important;
+  /* Keep the modal in the DOM even when it sits inside another wrapper. */
+  body *{
+    visibility:hidden !important;
+  }
+
+  #previewModal,
+  #previewModal *,
+  #invoicePaper,
+  #invoicePaper *{
+    visibility:visible !important;
   }
 
   #previewModal{
     display:block !important;
+    visibility:visible !important;
     position:static !important;
     inset:auto !important;
     width:210mm !important;
@@ -794,6 +803,7 @@
 
   #invoicePaper{
     display:flex !important;
+    visibility:visible !important;
     flex-direction:column !important;
     position:static !important;
     width:209.5mm !important;
