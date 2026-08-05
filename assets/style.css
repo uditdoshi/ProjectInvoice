@@ -958,39 +958,74 @@
   }
 }
 
-/* =========================================================
-   FINAL SUMMARY DIVIDER CORRECTION
-   Remove the divider beside the bank area and below Total Qty.
+   FINAL SUMMARY DIVIDER FIX
+   Remove only the line below Total Qty beside bank details.
+   Keep Total Qty and tax-summary borders strong.
    ========================================================= */
 
+/* Phone preview */
 @media screen and (max-width: 760px) {
+
+  /* Restore the required borders */
   #invoicePaper .summary-table .bank-cell {
-    border-right-style: hidden !important;
+    position: relative;
+    border-right: 2px solid #000 !important;
+  }
+
+  #invoicePaper .summary-table .qty-total-label,
+  #invoicePaper .summary-table .qty-total-value {
+    border: 2px solid #000 !important;
   }
 
   #invoicePaper .summary-table .qty-lower-blank {
-    border-left-style: hidden !important;
-    border-right-style: hidden !important;
+    position: relative;
+    border-left: 2px solid #000 !important;
+    border-right: 2px solid #000 !important;
   }
 
-  /* Keep the short divider only beside the Total Qty row */
-  #invoicePaper .summary-table .qty-total-label {
-    border-left: 2px solid #000 !important;
+  /* Cover only the unwanted left divider below Total Qty */
+  #invoicePaper .summary-table .qty-lower-blank::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    bottom: -1px;
+    left: -3px;
+    width: 4px;
+    background: #fff;
+    z-index: 2;
+    pointer-events: none;
   }
 }
 
+/* Printed PDF */
 @media print {
+
   #invoicePaper .summary-table .bank-cell {
-    border-right-style: hidden !important;
+    position: relative;
+    border-right: 1px solid #000 !important;
+  }
+
+  #invoicePaper .summary-table .qty-total-label,
+  #invoicePaper .summary-table .qty-total-value {
+    border: 1px solid #000 !important;
   }
 
   #invoicePaper .summary-table .qty-lower-blank {
-    border-left-style: hidden !important;
-    border-right-style: hidden !important;
+    position: relative;
+    border-left: 1px solid #000 !important;
+    border-right: 1px solid #000 !important;
   }
 
-  #invoicePaper .summary-table .qty-total-label {
-    border-left: 1px solid #000 !important;
+  #invoicePaper .summary-table .qty-lower-blank::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    bottom: -1px;
+    left: -2px;
+    width: 3px;
+    background: #fff;
+    z-index: 2;
+    pointer-events: none;
   }
 }
 
