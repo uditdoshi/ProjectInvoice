@@ -692,21 +692,34 @@
   transform:translateX(-50%);
 }
 
-/* FINAL PRINT RULES — same A4 output on desktop and phone */
 
 /* =========================================================
-   MOBILE INVOICE PREVIEW
-   Keep the exact desktop/A4 layout and shrink it visually.
-   `zoom` changes the layout footprint too, so the modal does
-   not retain a giant invisible 297 mm block below the page.
+   FINAL MOBILE PREVIEW + PRINT
+   The invoice itself always stays at desktop A4 dimensions.
+   JavaScript scales only the outer stage on small screens.
    ========================================================= */
+.preview-viewport{
+  width:100%;
+  overflow:auto;
+  padding:22px 16px 40px;
+}
+.preview-stage{
+  width:210mm;
+  min-height:297mm;
+  margin:0 auto;
+  position:relative;
+}
+#invoicePaper{
+  margin:0 !important;
+  transform:none;
+  transform-origin:top left;
+}
+
 @media (max-width:760px){
   #previewModal{
-    padding:0 0 24px !important;
     overflow:auto !important;
     background:#eef1f3 !important;
   }
-
   #previewModal .modalbar{
     position:sticky !important;
     top:0 !important;
@@ -714,142 +727,84 @@
     min-height:58px;
     padding:8px 10px !important;
     gap:8px !important;
-    flex-wrap:wrap !important;
     box-sizing:border-box !important;
   }
-
+  .preview-viewport{
+    overflow:hidden !important;
+    padding:12px 10px 28px !important;
+  }
+  .preview-stage{
+    margin:0 auto !important;
+    min-height:0 !important;
+  }
   #invoicePaper{
     width:210mm !important;
     min-width:210mm !important;
     max-width:210mm !important;
     min-height:297mm !important;
-    margin:14px auto 0 !important;
     padding:7mm 7mm 7mm 13mm !important;
     box-sizing:border-box !important;
-    transform:none !important;
-    transform-origin:top center !important;
-    zoom:.46;
+    font-size:11.2px !important;
+    line-height:1.34 !important;
     box-shadow:0 4px 20px rgba(0,0,0,.18) !important;
     background:#fff !important;
     overflow:hidden !important;
   }
 }
 
-@media (max-width:390px){
-  #invoicePaper{zoom:.43;}
-}
-
-@media (max-width:360px){
-  #invoicePaper{zoom:.39;}
-}
-
-/* =========================================================
-   ONE-PAGE A4 PRINT
-   Reset the mobile preview zoom and print only the invoice.
-   Slight sub-millimetre safety avoids Safari rounding onto a
-   blank second page without visibly changing the A4 design.
-   ========================================================= */
-@page{
-  size:A4 portrait;
-  margin:0;
-}
-
+@page{size:A4 portrait;margin:0}
 @media print{
-  html,
-  body{
+  html,body{
     width:210mm !important;
-    height:auto !important;
-    min-height:0 !important;
+    height:297mm !important;
     margin:0 !important;
     padding:0 !important;
-    overflow:visible !important;
+    overflow:hidden !important;
     background:#fff !important;
   }
-
-  /* Keep the modal in the DOM even when it sits inside another wrapper. */
-  body *{
-    visibility:hidden !important;
-  }
-
-  #previewModal,
-  #previewModal *,
-  #invoicePaper,
-  #invoicePaper *{
+  body *{visibility:hidden !important}
+  #previewModal,#previewModal *,#previewViewport,#previewStage,#invoicePaper,#invoicePaper *{
     visibility:visible !important;
   }
-
   #previewModal{
+    position:absolute !important;
+    inset:0 !important;
     display:block !important;
-    visibility:visible !important;
-    position:static !important;
-    inset:auto !important;
     width:210mm !important;
-    height:auto !important;
-    min-height:0 !important;
+    height:297mm !important;
     margin:0 !important;
     padding:0 !important;
-    overflow:visible !important;
+    overflow:hidden !important;
     background:#fff !important;
   }
-
-  #previewModal .modalbar,
-  .modalbar,
-  .topbar,
-  .container,
-  .login-gate,
-  .form-modal{
-    display:none !important;
-  }
-
-  #invoicePaper{
-    display:flex !important;
-    visibility:visible !important;
-    flex-direction:column !important;
+  .modalbar,.topbar,.container,.login-gate,.form-modal{display:none !important}
+  .preview-viewport,.preview-stage{
     position:static !important;
-    width:209.5mm !important;
-    min-width:209.5mm !important;
-    max-width:209.5mm !important;
-    height:296.5mm !important;
-    min-height:296.5mm !important;
-    max-height:296.5mm !important;
+    width:210mm !important;
+    height:297mm !important;
+    min-height:297mm !important;
+    margin:0 !important;
+    padding:0 !important;
+    overflow:hidden !important;
+  }
+  #invoicePaper{
+    position:static !important;
+    display:flex !important;
+    flex-direction:column !important;
+    width:210mm !important;
+    min-width:210mm !important;
+    max-width:210mm !important;
+    height:297mm !important;
+    min-height:297mm !important;
+    max-height:297mm !important;
     margin:0 !important;
     padding:7mm 7mm 7mm 13mm !important;
     box-sizing:border-box !important;
-    zoom:1 !important;
     transform:none !important;
-    transform-origin:top left !important;
+    zoom:1 !important;
     overflow:hidden !important;
     box-shadow:none !important;
     background:#fff !important;
-    page-break-before:avoid !important;
-    page-break-after:avoid !important;
-    break-before:avoid-page !important;
-    break-after:avoid-page !important;
   }
-
-  .company-info-row{
-    display:grid !important;
-    grid-template-columns:1fr 1fr !important;
-  }
-
-  .details-table,
-  .items-table,
-  .summary-table,
-  .terms-signature{
-    width:100% !important;
-    table-layout:fixed !important;
-    border-collapse:collapse !important;
-  }
-
-  .summary-table,
-  .amount-words,
-  .terms-signature{
-    break-inside:avoid !important;
-    page-break-inside:avoid !important;
-  }
-
-  *{
-    -webkit-print-color-adjust:exact !important;
-    print-color-adjust:exact !important;
-  }
+  *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important}
 }
