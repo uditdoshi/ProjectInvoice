@@ -735,3 +735,107 @@
   border-left:.7px dotted #777;
   transform:translateX(-50%);
 }
+
+/* FINAL PHONE + DESKTOP PRINT FIX */
+@media print {
+
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  html,
+  body {
+    width: 210mm !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #fff !important;
+  }
+
+  body {
+    overflow: visible !important;
+  }
+
+  .modal {
+    position: static !important;
+    inset: auto !important;
+    width: 210mm !important;
+    height: auto !important;
+    overflow: visible !important;
+    background: #fff !important;
+  }
+
+  .paper {
+    display: block !important;
+    width: 210mm !important;
+    min-width: 210mm !important;
+    max-width: 210mm !important;
+
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+
+    margin: 0 !important;
+    padding: 7mm 7mm 7mm 13mm !important;
+
+    box-shadow: none !important;
+    overflow: visible !important;
+
+    page-break-before: avoid !important;
+    page-break-after: avoid !important;
+    break-before: avoid-page !important;
+    break-after: avoid-page !important;
+  }
+
+  .modalbar,
+  .topbar,
+  .container {
+    display: none !important;
+  }
+
+  /* Prevent phone media rules from changing invoice layout */
+  .company-info-row {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  .items-table,
+  .summary-table,
+  .details-table,
+  .terms-signature {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    table-layout: fixed !important;
+  }
+
+  /* Ensure mobile PDF keeps visible borders */
+  .inv-table td,
+  .inv-table th {
+    border-color: #000;
+  }
+
+  .items-table thead th {
+    border: 0.75px solid #000 !important;
+  }
+
+  .items-table tbody td {
+    border-left: 0.65px dotted #777 !important;
+    border-right: 0.65px dotted #777 !important;
+    border-bottom: 0.65px dotted #777 !important;
+  }
+
+  .items-table tbody td:first-child {
+    border-left: 0.75px solid #000 !important;
+  }
+
+  .items-table tbody td:last-child {
+    border-right: 0.75px solid #000 !important;
+  }
+
+  .summary-table td,
+  .amount-words,
+  .terms-signature td {
+    border-color: #000;
+  }
+}
