@@ -67,7 +67,35 @@ function amountWords(v){let r=Math.floor(v),p=Math.round((v-r)*100);return words
 function displayDate(v){const m=String(v||'').match(/^(\d{4})-(\d{2})-(\d{2})$/);return m?`${m[3]}-${m[2]}-${m[1]}`:String(v||'')}
 function data(){let totals=calc();return{id:editingId||Date.now().toString(),invoiceNo:manualInvoiceNumber(),invoiceDate:$('invoiceDate').value,dueDate:$('dueDate').value,paymentTerms:$('paymentTerms').value,customer:selectedCustomer,shipping:$('sameShipping').checked?selectedCustomer:selectedShipping,lines:lines.filter(l=>l.description&&l.qty>0).map(l=>({...l,amount:l.qty*l.rate})),transporter:$('transporter').value,vehicleNo:$('vehicleNo').value,broker:$('broker').value,lrNo:$('lrNo').value,lrDate:$('lrDate').value,otherCharges:Number($('otherCharges').value||0),notes:$('notes').value,totals,createdAt:new Date().toISOString()}}
 function validate(d){if(!d.invoiceDate)return'Select the invoice date.';if(!d.customer)return'Select a customer from the list.';if(!d.lines.length)return'Add at least one item with quantity.';return''}
-async function save(show=true){try{let d=data(),e=validate(d);if(e){alert(e);return null}d.id=editingId||null;let saved=await window.EasyDB.saveInvoice(d);let idx=INV.findIndex(x=>String(x.id)===String(saved.id)||(saved.invoiceNo&&x.invoiceNo===saved.invoiceNo));if(idx>=0)INV[idx]=saved;else INV.unshift(saved);editingId=saved.id;if(show)alert('Invoice saved to Supabase.');return saved}catch(err){alert('Could not save invoice: '+err.message);return null}}
+async function save(show=true){
+  try{
+    let d=data(),e=validate(d);
+    if(e){alert(e);return null}
+
+    // Update only when this invoice was explicitly opened from History.
+    // A newly entered invoice always creates a new Supabase row.
+    const updatingExisting = Boolean(editingId);
+    d.id = updatingExisting ? editingId : null;
+
+    let saved=await window.EasyDB.saveInvoice(d);
+    let idx=INV.findIndex(x=>String(x.id)===String(saved.id));
+    if(idx>=0)INV[idx]=saved;
+    else INV.unshift(saved);
+
+    // Keep edit mode only for an invoice opened from History.
+    if(updatingExisting) editingId=saved.id;
+
+    if(show){
+      alert(updatingExisting
+        ? 'Invoice updated in Supabase.'
+        : 'Invoice saved as a new record in Supabase.');
+    }
+    return saved;
+  }catch(err){
+    alert('Could not save invoice: '+err.message);
+    return null;
+  }
+}
 function renderInvoice(d){
   let bill=d.customer||{},ship=d.shipping||bill,t=d.totals;
   const totalQty=d.lines.reduce((s,l)=>s+Number(l.qty||0),0);
