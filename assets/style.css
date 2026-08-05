@@ -77,12 +77,13 @@
 .terms-signature .signature{height:94px}
 .inv-footer{font-size:7.5px}
 
+/*
 @media print{
   @page{size:A4 portrait;margin:0}
   html,body{width:210mm;height:297mm}
   .paper{width:210mm;min-height:297mm;height:297mm;padding:5mm;margin:0;box-shadow:none;overflow:hidden}
 }
-
+*/
 /* Invoice design round 2 — readability, aligned columns and lighter grids */
 .paper{
   font-size:10.5px;
@@ -178,7 +179,7 @@
 .meta-list span{min-width:0}
 .details-table td{padding-left:6px;padding-right:6px}
 .terms-signature{margin-bottom:0}
-
+/*
 @media print{
   @page{size:A4 portrait;margin:0}
   html,body{width:210mm;height:297mm}
@@ -192,7 +193,7 @@
     overflow:hidden;
   }
 }
-
+*/
 /* Final design tweak pack */
 .paper{
   font-size:11.2px;
