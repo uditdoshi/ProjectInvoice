@@ -957,3 +957,28 @@
     border-left:1px dotted #777 !important;
   }
 }
+
+/* =========================================================
+   FINAL SUMMARY DIVIDER CORRECTION
+   Match the desktop version: no vertical divider between the
+   bank-details area and the blank area below Total Qty.
+   ========================================================= */
+@media screen and (max-width:760px){
+  #invoicePaper .summary-table .bank-cell{
+    border-right:0 !important;
+  }
+  #invoicePaper .summary-table .qty-lower-blank{
+    border-left:0 !important;
+    border-right:0 !important;
+  }
+}
+
+@media print{
+  #invoicePaper .summary-table .bank-cell{
+    border-right:0 !important;
+  }
+  #invoicePaper .summary-table .qty-lower-blank{
+    border-left:0 !important;
+    border-right:0 !important;
+  }
+}
