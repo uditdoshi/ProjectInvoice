@@ -756,55 +756,154 @@
 @media print{
   html,body{
     width:210mm !important;
-    height:297mm !important;
+    height:auto !important;
+    min-height:0 !important;
     margin:0 !important;
     padding:0 !important;
-    overflow:hidden !important;
+    overflow:visible !important;
     background:#fff !important;
   }
-  body *{visibility:hidden !important}
-  #previewModal,#previewModal *,#previewViewport,#previewStage,#invoicePaper,#invoicePaper *{
-    visibility:visible !important;
+
+  /* Remove every app element except the open invoice preview. */
+  #loginGate,
+  #appShell > .topbar,
+  #appShell > .container,
+  #appShell > .form-modal,
+  #previewModal > .modalbar{
+    display:none !important;
   }
+
+  #appShell,
   #previewModal{
-    position:absolute !important;
-    inset:0 !important;
     display:block !important;
+    position:static !important;
     width:210mm !important;
-    height:297mm !important;
+    height:auto !important;
+    min-height:0 !important;
     margin:0 !important;
     padding:0 !important;
-    overflow:hidden !important;
+    overflow:visible !important;
     background:#fff !important;
   }
-  .modalbar,.topbar,.container,.login-gate,.form-modal{display:none !important}
-  .preview-viewport,.preview-stage{
+
+  .preview-viewport,
+  .preview-stage{
+    display:block !important;
     position:static !important;
     width:210mm !important;
-    height:297mm !important;
-    min-height:297mm !important;
+    height:auto !important;
+    min-height:0 !important;
     margin:0 !important;
     padding:0 !important;
-    overflow:hidden !important;
+    overflow:visible !important;
   }
+
   #invoicePaper{
-    position:static !important;
     display:flex !important;
     flex-direction:column !important;
+    position:static !important;
     width:210mm !important;
     min-width:210mm !important;
     max-width:210mm !important;
-    height:297mm !important;
-    min-height:297mm !important;
-    max-height:297mm !important;
+    height:296mm !important;
+    min-height:296mm !important;
+    max-height:296mm !important;
     margin:0 !important;
     padding:7mm 7mm 7mm 13mm !important;
     box-sizing:border-box !important;
     transform:none !important;
+    transform-origin:top left !important;
     zoom:1 !important;
     overflow:hidden !important;
     box-shadow:none !important;
     background:#fff !important;
+    break-after:avoid-page !important;
+    page-break-after:avoid !important;
   }
-  *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important}
+
+  *{
+    -webkit-print-color-adjust:exact !important;
+    print-color-adjust:exact !important;
+  }
+}
+
+
+/* =========================================================
+   MOBILE PREVIEW BORDER COMPENSATION
+   The A4 sheet is scaled to about 45–50% on phones. Thin
+   0.5px desktop borders become sub-pixel and disappear, so
+   phone preview uses thicker source borders. Print resets them.
+   ========================================================= */
+@media screen and (max-width:760px){
+  #invoicePaper .company-head,
+  #invoicePaper .tax-title,
+  #invoicePaper .details-table td,
+  #invoicePaper .details-table th,
+  #invoicePaper .amount-words,
+  #invoicePaper .terms-signature td,
+  #invoicePaper .copy-boxes span{
+    border-width:2px !important;
+  }
+
+  #invoicePaper .items-table thead th{
+    border:2px solid #000 !important;
+  }
+  #invoicePaper .items-table tbody td{
+    border-top:0 !important;
+    border-left:2px dotted #777 !important;
+    border-right:2px dotted #777 !important;
+    border-bottom:2px dotted #aaa !important;
+  }
+  #invoicePaper .items-table tbody td:first-child{
+    border-left:2px solid #000 !important;
+  }
+  #invoicePaper .items-table tbody td:last-child{
+    border-right:2px solid #000 !important;
+  }
+  #invoicePaper .items-table tbody tr:last-child td{
+    border-bottom:2px solid #000 !important;
+  }
+
+  #invoicePaper .summary-table td{
+    border-width:2px !important;
+  }
+  #invoicePaper .summary-table .bank-top-blank,
+  #invoicePaper .summary-table .summary-blank-cell{
+    border-top:2px dotted #777 !important;
+  }
+  #invoicePaper .summary-table .bank-top-blank{
+    border-right:2px dotted #777 !important;
+  }
+  #invoicePaper .summary-table .bank-top-blank + .summary-blank-cell{
+    border-left:2px dotted #777 !important;
+    border-right:2px dotted #777 !important;
+  }
+  #invoicePaper .company-info-row::after{
+    border-left-width:2px !important;
+  }
+}
+
+@media print{
+  #invoicePaper .company-head,
+  #invoicePaper .tax-title,
+  #invoicePaper .details-table td,
+  #invoicePaper .details-table th,
+  #invoicePaper .amount-words,
+  #invoicePaper .terms-signature td,
+  #invoicePaper .copy-boxes span{
+    border-width:.6px !important;
+  }
+  #invoicePaper .items-table thead th{
+    border:.6px solid #000 !important;
+  }
+  #invoicePaper .items-table tbody td{
+    border-top:0 !important;
+    border-left:.6px dotted #777 !important;
+    border-right:.6px dotted #777 !important;
+    border-bottom:.6px dotted #aaa !important;
+  }
+  #invoicePaper .items-table tbody td:first-child{border-left:.6px solid #000 !important}
+  #invoicePaper .items-table tbody td:last-child{border-right:.6px solid #000 !important}
+  #invoicePaper .items-table tbody tr:last-child td{border-bottom:.6px solid #000 !important}
+  #invoicePaper .company-info-row::after{border-left-width:.7px !important}
 }
