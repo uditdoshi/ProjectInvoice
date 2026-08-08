@@ -24,15 +24,69 @@ function invoiceSuffix(full,dateValue){
   const prefix=fiscalYearLabel(dateValue||isoToday())+'/';
   return value.startsWith(prefix)?value.slice(prefix.length):value;
 }
-function populate(){ $('customerOptions').innerHTML=C.slice().sort((a,b)=>a.name.localeCompare(b.name)).map((x,i)=>`<option value="${esc(x.name)}" data-i="${i}"></option>`).join('') }
+function populate(){ /* custom autocomplete uses C directly */ }
 function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
 function customerByName(n){return C.find(x=>x.name.trim().toLowerCase()===n.trim().toLowerCase())||null}
 function customerHtml(c){if(!c)return 'Select a customer to fill the details.';return `<strong>${esc(c.name)}</strong><br>${esc([c.address1,c.address2,c.city].filter(Boolean).join(', '))}<br>${c.gstin?`GSTIN: ${esc(c.gstin)}`:'GSTIN not available'}`}
-function bindCustomer(){selectedCustomer=customerByName($('customerSearch').value);$('customerDetails').innerHTML=customerHtml(selectedCustomer);$('customerDetails').classList.toggle('empty',!selectedCustomer);calc()}
-function bindShipping(){selectedShipping=customerByName($('shippingSearch').value);$('shippingDetails').innerHTML=customerHtml(selectedShipping);$('shippingDetails').classList.toggle('empty',!selectedShipping)}
+function bindCustomer(customer=null){selectedCustomer=customer||customerByName($('customerSearch').value);$('customerDetails').innerHTML=customerHtml(selectedCustomer);$('customerDetails').classList.toggle('empty',!selectedCustomer);calc()}
+function bindShipping(customer=null){selectedShipping=customer||customerByName($('shippingSearch').value);$('shippingDetails').innerHTML=customerHtml(selectedShipping);$('shippingDetails').classList.toggle('empty',!selectedShipping)}
+
+function normalizedText(v){return String(v||'').trim().toLowerCase()}
+
+function setupCustomerAutocomplete(inputId,menuId,onSelect){
+  const input=$(inputId),menu=$(menuId);
+  if(!input||!menu)return;
+  const render=()=>{
+    const q=normalizedText(input.value);
+    const matches=C.filter(c=>!q||[c.name,c.city,c.gstin].some(v=>normalizedText(v).includes(q))).sort((a,b)=>a.name.localeCompare(b.name)).slice(0,50);
+    menu.innerHTML=matches.length?matches.map(c=>`<button type="button" class="autocomplete-option" data-id="${esc(c.id)}"><span class="autocomplete-main">${esc(c.name)}</span>${c.city||c.gstin?`<span class="autocomplete-sub">${esc([c.city,c.gstin].filter(Boolean).join(' · '))}</span>`:''}</button>`).join(''):'<div class="autocomplete-empty">No matching customers</div>';
+    menu.hidden=false;
+    menu.querySelectorAll('.autocomplete-option').forEach(btn=>{
+      btn.addEventListener('pointerdown',e=>e.preventDefault());
+      btn.addEventListener('click',()=>{const c=C.find(x=>String(x.id)===String(btn.dataset.id));if(!c)return;input.value=c.name;menu.hidden=true;onSelect(c)});
+    });
+  };
+  input.addEventListener('focus',render);
+  input.addEventListener('input',()=>{onSelect(null);render()});
+  input.addEventListener('keydown',e=>{if(e.key==='Escape')menu.hidden=true});
+  input.addEventListener('blur',()=>setTimeout(()=>{menu.hidden=true},150));
+}
+
+function materialDisplayName(it){return [it.description,it.code].filter(Boolean).join(' — ')}
+function setupMaterialAutocomplete(el,line){
+  const input=el.querySelector('.item'),menu=el.querySelector('.material-autocomplete-menu');
+  if(!input||!menu)return;
+  const render=()=>{
+    const q=normalizedText(input.value);
+    const matches=I.filter(it=>!q||[it.description,it.code,it.hsn].some(v=>normalizedText(v).includes(q))).sort((a,b)=>a.description.localeCompare(b.description)).slice(0,50);
+    menu.innerHTML=matches.length?matches.map(it=>`<button type="button" class="autocomplete-option" data-id="${esc(it.id)}"><span class="autocomplete-main">${esc(it.description)}</span>${it.code||it.hsn?`<span class="autocomplete-sub">${esc([it.code,it.hsn&&('HSN '+it.hsn)].filter(Boolean).join(' · '))}</span>`:''}</button>`).join(''):'<div class="autocomplete-empty">No matching materials</div>';
+    menu.hidden=false;
+    menu.querySelectorAll('.autocomplete-option').forEach(btn=>{
+      btn.addEventListener('pointerdown',e=>e.preventDefault());
+      btn.addEventListener('click',()=>{
+        const it=I.find(x=>String(x.id)===String(btn.dataset.id));if(!it)return;
+        line.materialId=it.id;line.itemName=materialDisplayName(it);line.description=it.description;line.hsn=it.hsn;line.gst=it.gst_rate;
+        line.rate=it.default_rate!==null&&it.default_rate!==undefined&&String(it.default_rate).trim()!==''&&Number(it.default_rate)!==0?Number(it.default_rate):'';
+        input.value=line.itemName;menu.hidden=true;renderLines();
+      });
+    });
+  };
+  input.addEventListener('focus',render);
+  input.addEventListener('input',()=>{line.materialId=null;line.itemName=input.value;line.description=input.value;render()});
+  input.addEventListener('keydown',e=>{if(e.key==='Escape')menu.hidden=true});
+  input.addEventListener('blur',()=>setTimeout(()=>{menu.hidden=true},150));
+}
+
 function addLine(seed={}){lines.push({id:crypto.randomUUID?crypto.randomUUID():String(Date.now()+Math.random()),itemName:seed.itemName||'',description:seed.description||'',hsn:seed.hsn||'',qty:seed.qty??'',rate:seed.rate??'',gst:seed.gst??18});renderLines()}
-function renderLines(){ $('lines').innerHTML=lines.map((l,idx)=>`<div class="lineItem" data-id="${l.id}"><label class="desc">Item<input class="item" list="itemOptions${idx}" value="${esc(l.itemName)}" placeholder="Search item"><datalist id="itemOptions${idx}">${I.map(x=>`<option value="${esc(x.description)} — ${esc(x.code)}"></option>`).join('')}</datalist></label><label>Qty<input class="qty" type="number" min="0" step="0.01" value="${l.qty}"></label><label>Rate<input class="rate" type="number" min="0" step="0.01" value="${l.rate}"></label><label>GST %<input class="gst" type="number" min="0" step="0.01" value="${l.gst}"></label><div class="amount">${money(l.qty*l.rate)}</div><button class="remove" title="Remove">×</button></div>`).join('');
- document.querySelectorAll('.lineItem').forEach(el=>{let l=lines.find(x=>x.id===el.dataset.id);el.querySelector('.item').onchange=e=>{let v=e.target.value, it=I.find(x=>(x.description+' — '+x.code)===v)||I.find(x=>x.description===v);if(it){l.materialId=it.id;l.itemName=v;l.description=it.description;l.hsn=it.hsn;l.gst=it.gst_rate;l.rate=it.default_rate !== null && it.default_rate !== undefined && String(it.default_rate).trim() !== '' && Number(it.default_rate) !== 0 ? Number(it.default_rate) : '';}else{l.itemName=v;l.description=v}renderLines()};['qty','rate','gst'].forEach(k=>el.querySelector('.'+k).oninput=e=>{l[k]=Number(e.target.value||0);el.querySelector('.amount').textContent=money(l.qty*l.rate);calc()});el.querySelector('.remove').onclick=()=>{lines=lines.filter(x=>x.id!==l.id);if(!lines.length)addLine();else renderLines();calc()}});calc() }
+function renderLines(){
+  $('lines').innerHTML=lines.map((l,idx)=>`<div class="lineItem" data-id="${l.id}"><label class="desc">Item<div class="autocomplete"><input class="item" autocomplete="off" value="${esc(l.itemName)}" placeholder="Search item"><div class="autocomplete-menu material-autocomplete-menu" hidden></div></div></label><label>Qty<input class="qty" type="number" min="0" step="0.01" value="${l.qty}"></label><label>Rate<input class="rate" type="number" min="0" step="0.01" value="${l.rate}"></label><label>GST %<input class="gst" type="number" min="0" step="0.01" value="${l.gst}"></label><div class="amount">${money(l.qty*l.rate)}</div><button class="remove" title="Remove">×</button></div>`).join('');
+  document.querySelectorAll('.lineItem').forEach(el=>{
+    let l=lines.find(x=>x.id===el.dataset.id);setupMaterialAutocomplete(el,l);
+    ['qty','rate','gst'].forEach(k=>el.querySelector('.'+k).oninput=e=>{l[k]=Number(e.target.value||0);el.querySelector('.amount').textContent=money(l.qty*l.rate);calc()});
+    el.querySelector('.remove').onclick=()=>{lines=lines.filter(x=>x.id!==l.id);if(!lines.length)addLine();else renderLines();calc()};
+  });
+  calc();
+}
 function calc(){
   let itemSubtotal=0;
   const taxableLines=lines.map(l=>{
@@ -184,7 +238,7 @@ function reset(){editingId=null;selectedCustomer=selectedShipping=null;$('invoic
 function showHistory(){ $('editorView').hidden=true;$('historyView').hidden=false;renderHistory() }
 function renderHistory(){let q=$('historySearch').value.toLowerCase(),arr=invoices().filter(x=>(x.invoiceNo+' '+(x.customer?.name||'')).toLowerCase().includes(q));$('historyList').innerHTML=arr.length?arr.map(x=>`<div class="row"><div><b>${esc(x.invoiceNo)}</b><div class="muted">${esc(x.invoiceDate)}</div></div><div>${esc(x.customer?.name||'')}</div><div><b>${money(x.totals?.total)}</b></div><div><button class="secondary open" data-id="${x.id}">Open</button></div></div>`).join(''):'<div class="info empty">No saved invoices found.</div>';document.querySelectorAll('.open').forEach(b=>b.onclick=()=>loadInvoice(b.dataset.id))}
 function loadInvoice(id){let d=invoices().find(x=>String(x.id)===String(id));if(!d)return;editingId=d.id;$('invoiceDate').value=d.invoiceDate;$('invoiceNo').value=invoiceSuffix(d.invoiceNo,d.invoiceDate);updateInvoicePrefix();$('dueDate').value=d.dueDate;$('paymentTerms').value=d.paymentTerms;$('customerSearch').value=d.customer?.name||'';bindCustomer();let same=(d.shipping?.name||'')===(d.customer?.name||'');$('sameShipping').checked=same;$('shippingBox').hidden=same;$('shippingSearch').value=same?'':d.shipping?.name||'';bindShipping();lines=d.lines.map(x=>({...x,id:crypto.randomUUID?crypto.randomUUID():String(Math.random())}));renderLines();['transporter','vehicleNo','broker','lrNo','lrDate','notes'].forEach(k=>$(k).value=d[k]||'');$('otherCharges').value=d.otherCharges||0;$('historyView').hidden=true;$('editorView').hidden=false;calc();scrollTo(0,0)}
-$('customerSearch').onchange=bindCustomer;$('shippingSearch').onchange=bindShipping;$('sameShipping').onchange=e=>$('shippingBox').hidden=e.target.checked;$('paymentTerms').onchange=due;$('invoiceDate').onchange=()=>{due();updateInvoicePrefix();};$('otherCharges').oninput=calc;$('addLine').onclick=()=>addLine();$('previewBtn').onclick=preview;$('saveBtn').onclick=()=>save();$('saveFromPreview').onclick=()=>save();$('printBtn').onclick=()=>window.print();$('closePreview').onclick=()=>{$('previewModal').hidden=true;document.body.style.overflow='';const p=$('invoicePaper'),s=$('previewStage');if(p)p.style.transform='none';if(s){s.style.width='';s.style.height=''}};$('clearBtn').onclick=()=>{if(confirm('Clear the current invoice?'))reset()};$('historyBtn').onclick=()=>showView('historyView');$('newBtn').onclick=()=>{$('historyView').hidden=true;$('editorView').hidden=false;reset()};$('historySearch').oninput=renderHistory;
+setupCustomerAutocomplete('customerSearch','customerDropdown',c=>bindCustomer(c));setupCustomerAutocomplete('shippingSearch','shippingDropdown',c=>bindShipping(c));$('sameShipping').onchange=e=>$('shippingBox').hidden=e.target.checked;$('paymentTerms').onchange=due;$('invoiceDate').onchange=()=>{due();updateInvoicePrefix();};$('otherCharges').oninput=calc;$('addLine').onclick=()=>addLine();$('previewBtn').onclick=preview;$('saveBtn').onclick=()=>save();$('saveFromPreview').onclick=()=>save();$('printBtn').onclick=()=>window.print();$('closePreview').onclick=()=>{$('previewModal').hidden=true;document.body.style.overflow='';const p=$('invoicePaper'),s=$('previewStage');if(p)p.style.transform='none';if(s){s.style.width='';s.style.height=''}};$('clearBtn').onclick=()=>{if(confirm('Clear the current invoice?'))reset()};$('historyBtn').onclick=()=>showView('historyView');$('newBtn').onclick=()=>{$('historyView').hidden=true;$('editorView').hidden=false;reset()};$('historySearch').oninput=renderHistory;
 
 
 

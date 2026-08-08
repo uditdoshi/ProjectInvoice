@@ -1037,3 +1037,16 @@
     font-size: 16px !important;
   }
 }
+
+
+/* Custom vertical autocomplete: consistent on Samsung/Android, iPhone and desktop */
+.autocomplete{position:relative;width:100%}
+.autocomplete>input{width:100%}
+.autocomplete-menu{position:absolute;left:0;right:0;top:calc(100% + 4px);z-index:60;max-height:280px;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;background:#fff;border:1px solid #cbd4db;border-radius:12px;box-shadow:0 14px 32px rgba(20,35,50,.18)}
+.autocomplete-option{display:block;width:100%;border:0;border-bottom:1px solid #edf0f2;border-radius:0;background:#fff;color:var(--text);text-align:left;padding:12px 14px;cursor:pointer;touch-action:manipulation}
+.autocomplete-option:last-child{border-bottom:0}
+.autocomplete-option:active,.autocomplete-option:hover{background:#f3f7fa}
+.autocomplete-main{display:block;font-weight:750;line-height:1.25;white-space:normal}
+.autocomplete-sub{display:block;margin-top:3px;color:var(--muted);font-size:12px;font-weight:500;line-height:1.25;white-space:normal}
+.autocomplete-empty{padding:14px;color:var(--muted);font-size:13px;font-weight:500}
+@media(max-width:760px){.autocomplete-menu{max-height:min(42vh,320px);border-radius:12px}.autocomplete-option{min-height:54px;padding:13px 14px;font-size:16px}.autocomplete-sub{font-size:13px}}
