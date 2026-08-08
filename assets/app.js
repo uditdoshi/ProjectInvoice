@@ -49,8 +49,8 @@ function setupCustomerAutocomplete(inputId,menuId,onSelect){
   input.addEventListener('focus',render);
   input.addEventListener('input',()=>{onSelect(null);render()});
   input.addEventListener('keydown',e=>{if(e.key==='Escape')menu.hidden=true});
-  input.addEventListener('blur',()=>setTimeout(()=>{menu.hidden=true},150));
 }
+
 
 function materialDisplayName(it){return [it.description,it.code].filter(Boolean).join(' — ')}
 function setupMaterialAutocomplete(el,line){
@@ -74,8 +74,15 @@ function setupMaterialAutocomplete(el,line){
   input.addEventListener('focus',render);
   input.addEventListener('input',()=>{line.materialId=null;line.itemName=input.value;line.description=input.value;render()});
   input.addEventListener('keydown',e=>{if(e.key==='Escape')menu.hidden=true});
-  input.addEventListener('blur',()=>setTimeout(()=>{menu.hidden=true},150));
 }
+
+
+document.addEventListener('pointerdown',e=>{
+  document.querySelectorAll('.autocomplete-menu:not([hidden])').forEach(menu=>{
+    const box=menu.closest('.autocomplete');
+    if(box && !box.contains(e.target)) menu.hidden=true;
+  });
+});
 
 function addLine(seed={}){lines.push({id:crypto.randomUUID?crypto.randomUUID():String(Date.now()+Math.random()),itemName:seed.itemName||'',description:seed.description||'',hsn:seed.hsn||'',qty:seed.qty??'',rate:seed.rate??'',gst:seed.gst??18});renderLines()}
 function renderLines(){
