@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <title>EasyInvoice</title>
-  <link rel="stylesheet" href="assets/style.css?v=mobile-summary-divider-fix-5">
+  <link rel="stylesheet" href="assets/style.css?v=custom-autocomplete-1">
 </head>
 <body>
 <div id="loginGate" class="login-gate" hidden>
@@ -40,7 +40,7 @@
       <div id="customerDetails" class="info empty">Select a customer to fill the billing details.</div>
       <label class="check"><input type="checkbox" id="sameShipping" checked> Shipping address same as billing</label>
       <div id="shippingBox" hidden>
-        <label>Shipping customer/address<input id="shippingSearch" list="customerOptions" placeholder="Start typing a customer name"></label>
+        <label>Shipping customer/address<div class="autocomplete"><input id="shippingSearch" autocomplete="off" placeholder="Start typing a customer name"><div id="shippingDropdown" class="autocomplete-menu" hidden></div></div></label>
         <div id="shippingDetails" class="info empty">Select a shipping address.</div>
       </div>
     </div>
@@ -128,6 +128,6 @@
 <script src="config.js"></script>
 <script src="assets/database.js"></script>
 <script src="data/data.js"></script>
-<script src="assets/app.js?v=mobile-summary-divider-fix-5"></script>
+<script src="assets/app.js?v=custom-autocomplete-1"></script>
 </body>
 </html>
